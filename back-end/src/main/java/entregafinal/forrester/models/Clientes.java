@@ -24,14 +24,15 @@ public class Clientes {
     private String telefone;
     private String dataNascimento;
     private String cpf;
+    private String data_nascimento;
 
     public Clientes() {
     }
-    public Clientes(String nome, String email, String telefone, String dataNascimento, String cpf) {
+    public Clientes(String nome, String email, String telefone, String data_nascimento, String cpf) {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
-        this.dataNascimento = dataNascimento;
+        this.data_nascimento = data_nascimento;
         this.cpf = cpf;
     }
     public Long getId() {
@@ -59,10 +60,10 @@ public class Clientes {
         this.telefone = telefone;
     }
     public String getDataNascimento() {
-        return dataNascimento;
+        return data_nascimento;
     }
     public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
+        this.dataNascimento = data_nascimento;
     }
     public String getCpf() {
         return cpf;

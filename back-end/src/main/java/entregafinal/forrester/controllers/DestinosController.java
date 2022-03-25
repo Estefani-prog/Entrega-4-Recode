@@ -9,6 +9,7 @@ import entregafinal.forrester.util.DateUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,23 +21,27 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
-@RequestMapping(value = "/travels")
+@RequestMapping(value = "/destino")
 public class DestinosController {
     
     @Autowired
     private DestinosService destinosService;
     
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public List<Destinos> findAll() {
+        System.out.println("Listar destinos");
         return destinosService.findAll();
     }
 
-    @PostMapping("/create")
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/adicionar")
     public ResponseEntity<Destinos> save(@RequestBody Destinos destino) {
         destinosService.save(destino);
         return ResponseEntity.ok().body(destino);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/edit/{id}")
     public ResponseEntity<Destinos> edit(@PathVariable Long id, @RequestBody Destinos destino) {
         var destinokeep = destinosService.edit(id, destino);
@@ -45,7 +50,8 @@ public class DestinosController {
         return ResponseEntity.created(uri).body(destinokeep);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
+    @DeleteMapping("/apagar/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         destinosService.delete(id);
         return ResponseEntity.noContent().build();

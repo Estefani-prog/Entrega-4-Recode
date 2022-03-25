@@ -53,7 +53,7 @@ public class DestinosService {
         try {
             destinosRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
-            throw new ResourceNotFoundException("Travel ID: \"" + id + "\" was not found. Probably it was deleted or never existed.");
+            throw new ResourceNotFoundException("Forrester ID: \"" + id + "\" was not found. Probably it was deleted or never existed.");
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException("Integrity violation. Please, check if the Travel ID: \"" + id + "\" was not used in any other table.");
         }

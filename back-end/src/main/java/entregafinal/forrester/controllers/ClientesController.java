@@ -7,6 +7,7 @@ import entregafinal.forrester.models.Clientes;
 import entregafinal.forrester.services.ClientesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,15 +25,19 @@ public class ClientesController {
     @Autowired
     private ClientesService clientesService;
     
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public List<Clientes> findAll() {
+        System.out.println("Listar Cliente");
         return clientesService.findAll();
     }
-    @PostMapping("/novo")
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/adicionar")
     public ResponseEntity<Clientes> save(@RequestBody Clientes user) {
         clientesService.save(user);
         return ResponseEntity.ok().body(user);
     }
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/editar/{id}")
     public ResponseEntity<Clientes> edit(@PathVariable Long id, @RequestBody Clientes user) {
         var userkeep = clientesService.edit(id, user);
@@ -40,6 +45,7 @@ public class ClientesController {
 
         return ResponseEntity.created(uri).body(userkeep);
     }
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/apagar/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         clientesService.delete(id);
